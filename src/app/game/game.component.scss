@@ -43,3 +43,25 @@
         transform: scale(1) translate(200px);
     }
 }
+
+.players {
+    position: absolute;
+    right: 0;
+}
+
+.players3-4 {
+    position: absolute;
+    left: 0;
+}
+
+.add_btn {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    background: white;
+
+    .add_icon {
+        color: black;
+    }
+    
+}
