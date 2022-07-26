@@ -1,0 +1,117 @@
+.startscreen {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    background: green;
+}
+
+.startscreen_container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.start_top {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    height: 800px;
+}
+
+.vertical {
+    position: absolute;
+    transform: rotate(90deg);
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card1 {
+    transform: rotate(-90deg);
+}
+
+.card2 {
+    transform: rotate(90deg);
+}
+
+.diagonal {
+    position: absolute;
+    transform: rotate(45deg);
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.horizontal {
+    position: absolute;
+    transform: rotate(0deg);
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.diagonal_left {
+    position: absolute;
+    transform: rotate(-45deg);
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.start_cards {
+    width: 100px;
+    object-fit: contain;
+}
+
+.start_logo {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+    border-radius: 100%;
+    background: red;
+    border: 10px solid rgb(221, 186, 30);
+}
+
+.game_name {
+    font-size: 55px;
+    color: white;
+    font-family: 'DM Serif Display', serif;
+}
+
+.game_name_of {
+    font-size: 25px;
+    color: white;
+    font-family: 'DM Serif Display', serif;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.start_game_btn {
+    width: 200px;
+    height: 50px;
+    border-radius: 30px;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    background: white;
+    color: rgb(221, 186, 30);
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 0px 18px 3px #6d6d6d;
+    }
+}
