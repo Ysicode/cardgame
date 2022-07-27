@@ -60,8 +60,18 @@
     bottom: 50px;
     background: white;
 
+    &:hover {
+        .add_icon {
+            color: green;
+        }
+    }
+
     .add_icon {
         color: black;
     }
-    
+}
+
+.game_info {
+    margin-top: 100px;
+    width: 60%;
 }
