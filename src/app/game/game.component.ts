@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddplayerComponent } from '../dialog-addplayer/dialog-addplayer.component';
-
+import { Firestore, collectionData, collection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-game',
@@ -10,15 +11,26 @@ import { DialogAddplayerComponent } from '../dialog-addplayer/dialog-addplayer.c
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
+  item$: Observable<any[]>;
   pickCardAnimation = false;
-
+  todos$: Observable<any>;
+  todos: Array<any>;
   game: Game;
   currentCard: string = '';
-  constructor(public dialog: MatDialog) { }
+  constructor(private firestore: Firestore,public dialog: MatDialog) {
+    const coll = collection(firestore,'games');
+    this.todos$ = collectionData(coll);
+    this.todos$.subscribe((newTodos) => {
+      console.log('Neue Todos sind:', newTodos);
+      this.todos = newTodos;
+    });
+   }
 
   ngOnInit(): void {
     this.newGame();
+
   }
+
 
   newGame() {
     this.game = new Game();
