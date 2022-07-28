@@ -1,7 +1,7 @@
 <app-player *ngFor="let player of game.players; let i = index;" 
 [name]="player" 
 [playerActive]="i == game.current_player"
-[more4Player]="i % 2 == 0"
+[lefty]="i % 2 == 0"
 class="players">
 </app-player> 
 
