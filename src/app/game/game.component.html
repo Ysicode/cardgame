@@ -14,13 +14,13 @@ class="players"
         <img (click)="takeCard()" class="top_card" style="left: 40px" src="assets/cards/card_cover.png" alt="">
 
         <!-- Stack for played cards-->
-        <img *ngIf="pickCardAnimation" class="pick_card" style="left: 40px" src="assets/cards/{{ currentCard }}" alt="">
+        <img *ngIf="game.pickCardAnimation" class="pick_card" style="left: 40px" src="assets/cards/{{ game.currentCard }}" alt="">
 
         <!-- Current card -->
         <img *ngFor="let card of game.played_card " class="pick_card" style="left: 40px" src="assets/cards/{{ card }}"
             alt="">
     </div>
-    <app-game-info class="game_info" [card]="currentCard">
+    <app-game-info class="game_info" [card]="game.currentCard">
 
     </app-game-info>
     

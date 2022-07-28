@@ -4,6 +4,9 @@ export class Game {
     public played_card: string[] = [];
     public current_player: number = 0;
 
+    public pickCardAnimation = false;
+    public currentCard: string = '';
+
     constructor() {
         for (let i = 2; i < 15; i++) {
             this.stack.push(i + '_of_clubs.png');
@@ -20,6 +23,8 @@ export class Game {
             stack: this.stack,
             played_card: this.played_card,
             current_player: this.current_player,
+            pickCardAnimation: this.pickCardAnimation,
+            currentCard: this.currentCard,
         }
     }
 }
