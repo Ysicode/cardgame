@@ -44,6 +44,9 @@ export class GameComponent implements OnInit {
 
   newGame() {
     this.game = new Game();
+    setInterval(() => {
+      this.setnewStyle();
+    }, 50);
   }
 
 
@@ -68,32 +71,24 @@ export class GameComponent implements OnInit {
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
         this.game.players.push(name);
-        setTimeout(() => {
-          this.setnewStyle();
-        }, 500)
         this.saveGame();
       }
     });
   }
 
-  setnewStyle() {
-    
-    
-    
+  setnewStyle() {  
     let player = Array.from(document.getElementsByClassName('players'));
     for (let i = 1; i < player.length; i += 2) {
       let playerName = player[i];
       playerName.classList.add('players_left');
       playerName.classList.add(`margin_top${i}`);
-     
 
     }
     for (let i = 0; i < player.length; i += 2) {
       let playerName = player[i];
-      playerName.classList.add(`margin_top${i}`);
-      
+      playerName.classList.add(`margin_top${i}`);  
     }
-
+    
   }
 
   saveGame() {
