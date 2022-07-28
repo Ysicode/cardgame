@@ -13,7 +13,11 @@ export class StartScreenComponent implements OnInit {
 
   constructor(private firestore: AngularFirestore, private router: Router) { }
 
+  buttonAnimation = false;
   ngOnInit(): void {
+    this.animateButton();
+    console.log('der geht');
+    
   }
 
 
@@ -24,9 +28,23 @@ export class StartScreenComponent implements OnInit {
       .add(game.toJson())
       .then((gameInfo: any) => {
         console.log(gameInfo);
-        
+
         this.router.navigateByUrl('/game/' + gameInfo.id);
       });
 
   }
+
+  animateButton() {
+    console.log('der gehht');
+    
+    this.buttonAnimation = true;
+    setTimeout(() => {
+      this.buttonAnimation = false;
+    }, 1000);
+    setTimeout(() => {
+      this.animateButton();
+    }, 2000);
+  }
+ 
 }
+

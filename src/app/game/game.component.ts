@@ -5,6 +5,7 @@ import { DialogAddplayerComponent } from '../dialog-addplayer/dialog-addplayer.c
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { PlayerComponent } from '../player/player.component';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 export class GameComponent implements OnInit {
   game: Game;
   gameId: string;
+ 
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public dialog: MatDialog) {
 
   }
@@ -22,7 +24,6 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this.newGame();
     this.route.params.subscribe((params) => {
-      console.log(params['identifier'])
       this.gameId = params['identifier'];
       this
         .firestore
@@ -30,8 +31,6 @@ export class GameComponent implements OnInit {
         .doc(this.gameId)
         .valueChanges()
         .subscribe((game: any) => {
-          console.log('Gameupdate', game);
-
           this.game.current_player = game.current_player;
           this.game.played_card = game.played_card;
           this.game.players = game.players;
@@ -52,15 +51,15 @@ export class GameComponent implements OnInit {
     if (!this.game.pickCardAnimation) {
       this.game.currentCard = this.game.stack.pop();
       this.game.pickCardAnimation = true;
-      
       this.game.current_player++
       this.game.current_player = this.game.current_player % this.game.players.length;
       this.saveGame();
+      
       setTimeout(() => {
         this.game.played_card.push(this.game.currentCard);
         this.game.pickCardAnimation = false;
         this.saveGame();
-      }, 1500)
+      }, 20);
     }
   }
 
@@ -69,17 +68,40 @@ export class GameComponent implements OnInit {
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
         this.game.players.push(name);
+        setTimeout(() => {
+          this.setnewStyle();
+        }, 500)
         this.saveGame();
       }
     });
   }
 
+  setnewStyle() {
+    
+    
+    
+    let player = Array.from(document.getElementsByClassName('players'));
+    for (let i = 1; i < player.length; i += 2) {
+      let playerName = player[i];
+      playerName.classList.add('players_left');
+      playerName.classList.add(`margin_top${i}`);
+     
+
+    }
+    for (let i = 0; i < player.length; i += 2) {
+      let playerName = player[i];
+      playerName.classList.add(`margin_top${i}`);
+      
+    }
+
+  }
+
   saveGame() {
     this
-        .firestore
-        .collection('games')
-        .doc(this.gameId)
-        .update(this.game.toJson())
+      .firestore
+      .collection('games')
+      .doc(this.gameId)
+      .update(this.game.toJson())
   }
 
 }

@@ -4,7 +4,7 @@
             <div class="vertical">
                 <img class="start_cards card1" src="assets/cards/14_of_spades.png" alt="">
                 <img class="start_cards card2" src="assets/cards/13_of_clubs.png" alt="">
-            </div>
+            </div>  
             <div class="diagonal">
                 <img class="start_cards card1" src="assets/cards/14_of_clubs.png" alt="">
                 <img class="start_cards card2" src="assets/cards/13_of_hearts.png" alt="">
@@ -26,7 +26,7 @@
                 <p class="game_name_of">of</p>
                 <p class="game_name">Fire</p>
             </div>
-            <button (click)="newGame()" class="start_game_btn">Start Game</button>
+            <button [class.button_bigger]="buttonAnimation" (click)="newGame()" class="start_game_btn">Start Game</button>
         </div>
 
     </div>

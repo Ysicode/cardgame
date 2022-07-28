@@ -49,11 +49,41 @@
     right: 0;
 }
 
-.players3-4 {
+.players_left {
     position: absolute;
     left: 0;
 }
 
+.margin_top0 {
+    top: 20px;
+}
+
+.margin_top1 {
+    top: 20px;
+}
+.margin_top2 {
+    top: 70px;
+}
+
+.margin_top3 {
+    top: 70px;
+}
+
+.margin_top4 {
+    top:120px;
+}
+
+.margin_top5 {
+    top: 120px;
+}
+
+.margin_top6 {
+    top: 170px;
+}
+
+.margin_top7 {
+    top: 170px;
+}
 .add_btn {
     position: absolute;
     right: 50px;
@@ -74,4 +104,20 @@
 .game_info {
     margin-top: 100px;
     width: 60%;
+}
+
+@media (max-width: 900px) {
+
+    .cardstack {
+        left: -25%;
+        height: 100px;
+
+        img {
+            width: 115px;
+        }
+    }
+
+    .game_info {
+        width: 80%;
+    }
 }

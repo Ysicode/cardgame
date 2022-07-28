@@ -1,10 +1,9 @@
 <app-player *ngFor="let player of game.players; let i = index;" 
 [name]="player" 
 [playerActive]="i == game.current_player"
-class="players"
-    [ngStyle]="{'top.px': 100 + (i * 50)}">
-</app-player>
-
+[more4Player]="i % 2 == 0"
+class="players">
+</app-player> 
 
 <div class="field d_flex_column">
     <div class="cardstack">
