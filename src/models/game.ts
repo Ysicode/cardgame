@@ -3,7 +3,6 @@ export class Game {
     public stack: string[] = [];
     public played_card: string[] = [];
     public current_player: number = 0;
-    public morePlayer = false;
 
     constructor() {
         for (let i = 2; i < 15; i++) {
@@ -13,6 +12,15 @@ export class Game {
             this.stack.push(i + '_of_hearts.png');
         }
         shuffle(this.stack);
+    }
+
+    public toJson() {
+        return {
+            players: this.players,
+            stack: this.stack,
+            played_card: this.played_card,
+            current_player: this.current_player,
+        }
     }
 }
 

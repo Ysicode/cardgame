@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddplayerComponent } from '../dialog-addplayer/dialog-addplayer.component';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ActivatedRoute } from '@angular/router';
+import { doc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-game',
@@ -14,27 +16,40 @@ export class GameComponent implements OnInit {
   item$: Observable<any[]>;
   pickCardAnimation = false;
   todos$: Observable<any>;
-  todos: Array<any>;
   game: Game;
   currentCard: string = '';
-  constructor(private firestore: Firestore,public dialog: MatDialog) {
-    const coll = collection(firestore,'games');
-    this.todos$ = collectionData(coll);
-    this.todos$.subscribe((newTodos) => {
-      console.log('Neue Todos sind:', newTodos);
-      this.todos = newTodos;
-    });
-   }
+  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public dialog: MatDialog) {
+
+  }
 
   ngOnInit(): void {
     this.newGame();
+    this.route.params.subscribe((params) => {
+      console.log(params['identifier'])
+      this
+        .firestore
+        .collection('games')
+        .doc(params['identifier'])
+        .valueChanges()
+        .subscribe((alw: any) => {
+          console.log('Gameupdate', alw);
 
+          this.game.current_player = alw.current_player;
+          this.game.played_card = alw.played_card;
+          this.game.players = alw.players;
+          this.game.stack = alw.stack;
+        })
+    });
   }
 
 
   newGame() {
     this.game = new Game();
+    //this.firestore
+    //.collection('games')
+    //.add({'Hallo': 'Welt'})
   }
+
 
   takeCard() {
     if (!this.pickCardAnimation) {
@@ -56,7 +71,7 @@ export class GameComponent implements OnInit {
       if (name && name.length > 0) {
         this.game.players.push(name);
       }
-      
+
     });
   }
 
