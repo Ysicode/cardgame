@@ -25,22 +25,22 @@
 }
 
 .pick_card {
-    animation: pick_card_animation 1s ease-in-out;
-    transform: translate(200px);
+    animation: pick_card_animation 1.5s ease-in-out;
+    transform: translate(200px) translateY(0px);
 }
 
 @keyframes pick_card_animation {
     0% {
-        transform: scale(1);
+        transform: scale(1) translateY(-20px);
     }
     30% {
         transform: scale(1.7);
     }
     50% {
-        transform: scale(1.7);
+        transform: scale(1.7) translate(150px) translateY(-60px);
     }
     100% {
-        transform: scale(1) translate(200px);
+        transform: scale(1) translate(200px) translateY(0px);
     }
 }
 
@@ -120,4 +120,43 @@
     .game_info {
         width: 80%;
     }
+}
+
+@media (max-width: 600px) {
+
+    .cardstack {
+        left: -36%;
+        height: 100px;
+
+        img {
+            width: 100px;
+        }
+    }
+
+    .game_info {
+        width: 95%;
+    }
+
+    .pick_card {
+        animation: pick_card_animation 1.5s ease-in-out;
+        transform: translate(140px) translateY(0px);
+    }
+    
+    @keyframes pick_card_animation {
+        0% {
+            transform: scale(1)  translateY(-20px);
+        }
+        30% {
+            transform: scale(1.5);
+        }
+        50% {
+            transform: scale(1.5) translate(100px) translateY(-60px);
+        }
+        100% {
+            transform: scale(1) translate(140px) translateY(0px);
+        }
+    }
+
+    
+    
 }
