@@ -1,9 +1,6 @@
-<app-player *ngFor="let player of game.players; let i = index;" 
-[name]="player" 
-[playerActive]="i == game.current_player"
-[lefty]="i % 2 == 0"
-class="players">
-</app-player> 
+<app-player (click)="editPlayer(i)" *ngFor="let player of game.players; let i = index;" [name]="player"
+    [playerActive]="i == game.current_player" [image]="game.player_images[i]" [lefty]="i % 2 == 0" class="players">
+</app-player>
 
 <div class="field d_flex_column">
     <div class="cardstack">
@@ -13,7 +10,8 @@ class="players">
         <img (click)="takeCard()" class="top_card" style="left: 40px" src="assets/cards/card_cover.png" alt="">
 
         <!-- Stack for played cards-->
-        <img *ngIf="game.pickCardAnimation" class="pick_card" style="left: 40px" src="assets/cards/{{ game.currentCard }}" alt="">
+        <img *ngIf="game.pickCardAnimation" class="pick_card" style="left: 40px"
+            src="assets/cards/{{ game.currentCard }}" alt="">
 
         <!-- Current card -->
         <img *ngFor="let card of game.played_card " class="pick_card" style="left: 40px" src="assets/cards/{{ card }}"
@@ -22,12 +20,16 @@ class="players">
     <app-game-info class="game_info" [card]="game.currentCard">
 
     </app-game-info>
-    
+
 </div>
 
-
+<div *ngIf="gameOver" class="gameOver_wrapper d_flex">
+    <div class="gameOver_container d_flex_column">
+        <p class="gameOver_text">The game</p>
+        <p class="gameOver_text">is over</p>
+    </div>
+</div>
 
 <button (click)="openDialog()" mat-fab color="black" class="add_btn">
     <mat-icon class="add_icon">person_add</mat-icon>
 </button>
-

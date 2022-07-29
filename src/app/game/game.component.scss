@@ -47,11 +47,18 @@
 .players {
     position: absolute;
     right: 0;
+    opacity: 0;
+}
+
+.opacity {
+    opacity: 1;
+    transition: all 100ms ease;
 }
 
 .players_left {
     position: absolute;
     left: 0;
+    width: 300px;
 }
 
 .margin_top0 {
@@ -62,28 +69,37 @@
     top: 20px;
 }
 .margin_top2 {
-    top: 70px;
+    top: 80px;
 }
 
 .margin_top3 {
-    top: 70px;
+    top: 80px;
 }
 
 .margin_top4 {
-    top:120px;
+    top:140px;
 }
 
 .margin_top5 {
-    top: 120px;
+    top: 140px;
 }
 
 .margin_top6 {
-    top: 170px;
+    top: 200px;
 }
 
 .margin_top7 {
-    top: 170px;
+    top: 200px;
 }
+
+.margin_top8 {
+    top: 260px
+}
+
+.margin_top9 {
+    top: 260px
+}
+
 .add_btn {
     position: absolute;
     right: 50px;
@@ -104,6 +120,31 @@
 .game_info {
     margin-top: 100px;
     width: 60%;
+}
+
+.gameOver_container {
+   width: 500px;
+   height: 500px;
+   border-radius: 100%;
+   background: white;
+   border: 10px solid rgb(221, 186, 30);
+
+   p {
+    font-size: 70px;
+    color: black;
+    margin-top: 33px;
+    margin-bottom: 33px;
+   }
+}
+
+.gameOver_wrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    top: 0;
+    background: rgba(0, 0, 0, 0.719);
+    z-index: 999;
 }
 
 @media (max-width: 900px) {
@@ -155,6 +196,45 @@
         100% {
             transform: scale(1) translate(140px) translateY(0px);
         }
+    }
+
+    .margin_top0 {
+        top: 10px;
+    }
+    
+    .margin_top1 {
+        top: 10px;
+    }
+    .margin_top2 {
+        top: 40px;
+    }
+    
+    .margin_top3 {
+        top: 40px;
+    }
+    
+    .margin_top4 {
+        top: 70px;
+    }
+    
+    .margin_top5 {
+        top: 70px;
+    }
+    
+    .margin_top6 {
+        top: 100px;
+    }
+    
+    .margin_top7 {
+        top: 100px;
+    }
+
+    .margin_top8 {
+        top: 130px
+    }
+
+    .margin_top9 {
+        top: 130px
     }
 
     

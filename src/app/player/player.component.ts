@@ -11,6 +11,7 @@ export class PlayerComponent implements OnInit {
   @Input() name: string;
   @Input() playerActive: boolean = false;
   @Input() lefty: boolean = true;
+  @Input() image: string = 'male.png';
   constructor() { }
 
   ngOnInit(): void {

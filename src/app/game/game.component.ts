@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { PlayerComponent } from '../player/player.component';
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { PlayerComponent } from '../player/player.component';
 export class GameComponent implements OnInit {
   game: Game;
   gameId: string;
- 
+  gameOver = false;
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public dialog: MatDialog) {
 
   }
@@ -34,6 +35,7 @@ export class GameComponent implements OnInit {
           this.game.current_player = game.current_player;
           this.game.played_card = game.played_card;
           this.game.players = game.players;
+          this.game.player_images = game.player_images;
           this.game.stack = game.stack;
           this.game.currentCard = game.currentCard;
           this.game.pickCardAnimation = game.pickCardAnimation;
@@ -41,23 +43,24 @@ export class GameComponent implements OnInit {
     });
   }
 
-
   newGame() {
     this.game = new Game();
     setInterval(() => {
       this.setnewStyle();
-    }, 50);
+    }, 5);
   }
 
 
   takeCard() {
-    if (!this.game.pickCardAnimation) {
+    if (this.game.stack.length == 0) {
+      this.gameOver = true;
+    } else if (!this.game.pickCardAnimation) {
       this.game.currentCard = this.game.stack.pop();
       this.game.pickCardAnimation = true;
       this.game.current_player++
       this.game.current_player = this.game.current_player % this.game.players.length;
       this.saveGame();
-      
+
       setTimeout(() => {
         this.game.played_card.push(this.game.currentCard);
         this.game.pickCardAnimation = false;
@@ -71,24 +74,45 @@ export class GameComponent implements OnInit {
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
         this.game.players.push(name);
+        this.game.player_images.push('male.png');
         this.saveGame();
       }
     });
   }
 
-  setnewStyle() {  
+  editPlayer(playerId: number) {
+    const dialogRef = this.dialog.open(EditPlayerComponent);
+    dialogRef.afterClosed().subscribe((image: string) => {
+      if (image) {
+        if (image == 'Delete') {
+          this.game.player_images.splice(playerId, 1);
+          this.game.players.splice(playerId, 1);
+          window.location.reload();
+        } else {
+          this.game.player_images[playerId] = image;
+        }
+        this.saveGame();
+      }
+    });
+  }
+
+  setnewStyle() {
     let player = Array.from(document.getElementsByClassName('players'));
     for (let i = 1; i < player.length; i += 2) {
       let playerName = player[i];
       playerName.classList.add('players_left');
       playerName.classList.add(`margin_top${i}`);
-
+      setTimeout(() => {
+        playerName.classList.add('opacity');
+      }, 200);
     }
     for (let i = 0; i < player.length; i += 2) {
       let playerName = player[i];
-      playerName.classList.add(`margin_top${i}`);  
+      playerName.classList.add(`margin_top${i}`);
+      setTimeout(() => {
+        playerName.classList.add('opacity');
+      }, 200);
     }
-    
   }
 
   saveGame() {
