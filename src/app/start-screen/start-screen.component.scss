@@ -123,7 +123,8 @@
     transition: all 1000ms ease-in-out;
 }
 
-@media (max-width: 1000px) {
+@media screen and (max-width: 1000px), 
+screen and (max-height: 1000px) {
     .start_top {
         width: 500px;
         height: 500px;
@@ -145,7 +146,8 @@
     }
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px),
+screen and (max-height: 600px) {
     .start_top {
         width: 300px;
         height: 300px;

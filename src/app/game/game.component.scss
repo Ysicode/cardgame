@@ -235,8 +235,20 @@
 
     .margin_top9 {
         top: 130px
-    }
-
+    }    
     
+}
+
+@media screen and (max-width: 800px),
+screen and (max-height: 800px) {
+
+    .gameOver_container {
+        width: 270px;
+        height: 270px;
+        border: 6px solid rgb(221, 186, 30);
+         p {
+            font-size: 37px;
+         }
+    }
     
 }
