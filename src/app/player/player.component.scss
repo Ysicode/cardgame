@@ -38,7 +38,7 @@
     background: rgb(221, 186, 30);
 }
 
-@media (max-width: 650px) {
+@media screen and (max-width: 650px), screen and (max-height: 650px) {
     .player {
         width: 175px;
 

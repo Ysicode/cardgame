@@ -38,12 +38,10 @@
                 <mat-icon class="add_icon">person_add</mat-icon>
             </button>
         </div>
-
         <div class="game_info_addplayers_container d_flex_column">
             <p class="info_text">2. To play on different screens in realtime, share this link</p>
             <p class="gameLink">{{ '/game/' + gameId }}</p>
         </div>
-
         <button [disabled]="!addedPlayer" (click)="playGame()" mat-raised-button color="primary" class="lets_start_btn">Let's Play</button>
     </div>
 </div>

@@ -1,0 +1,13 @@
+@media screen and (max-width: 500px), screen and (max-height: 500px) {
+    mat-card-title {
+        font-size: 17px;
+    }
+
+    mat-card {
+        padding: 10px;
+    }
+
+    mat-card-content {
+        font-size: 13px;
+    }
+}
