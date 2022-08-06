@@ -20,7 +20,6 @@
     <app-game-info class="game_info" [card]="game.currentCard">
 
     </app-game-info>
-
 </div>
 
 <div *ngIf="gameOver" class="gameOver_wrapper d_flex">
@@ -33,7 +32,7 @@
 <div [class.d_none]="gameStart" class="gameInfo_wrapper d_flex">
     <div class="gameInfo_container d_flex_column">
         <div class="game_info_addplayers_container d_flex_column">
-            <p class="info_text">1. Please add Players</p>
+            <p class="info_text">1. Please add your name</p>
             <button [class.d_none]="gameStart" [class.add_btn_start]="!gameStart"  (click)="openDialog()" mat-fab color="black" >
                 <mat-icon class="add_icon">person_add</mat-icon>
             </button>

@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddplayerComponent } from '../dialog-addplayer/dialog-addplayer.component';
-import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { PlayerComponent } from '../player/player.component';
 import { EditPlayerComponent } from '../edit-player/edit-player.component';
-import { StartScreenComponent } from '../start-screen/start-screen.component';
 
 
 @Component({
@@ -19,7 +16,7 @@ export class GameComponent implements OnInit {
   game: Game;
   gameId: string;
   gameOver = false;
-  gameStart = false;
+  gameStart = true;
   addedPlayer = false;
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public dialog: MatDialog) {
 
@@ -44,20 +41,25 @@ export class GameComponent implements OnInit {
           this.game.pickCardAnimation = game.pickCardAnimation;
         })
     });
+    setTimeout(() => {
+      this.checkGameIsStarted();
+    }, 700);
   }
 
   newGame() {
     this.game = new Game();
     setInterval(() => {
       this.setnewStyle();
-      this.checkGameStart();
     }, 5);
   }
 
-  checkGameStart() {
-    if (this.game.players.length > 0) {
-      this.gameStart = true;
-    }
+  checkGameIsStarted() {
+    console.log(this.game.players.length)
+      if (this.game.players.length > 0) {
+        this.gameStart = true;
+      } else {
+        this.gameStart = false;
+      }
   }
 
 
@@ -70,7 +72,6 @@ export class GameComponent implements OnInit {
       this.game.current_player++
       this.game.current_player = this.game.current_player % this.game.players.length;
       this.saveGame();
-
       setTimeout(() => {
         this.game.played_card.push(this.game.currentCard);
         this.game.pickCardAnimation = false;
@@ -109,16 +110,24 @@ export class GameComponent implements OnInit {
 
   setnewStyle() {
     let player = Array.from(document.getElementsByClassName('players'));
-    for (let i = 1; i < player.length; i += 2) {
+    this.setLeftPlayers(player);
+    this.setRightPlayers(player);
+  }
+
+  setRightPlayers(player: any) {
+    for (let i = 0; i < player.length; i += 2) {
       let playerName = player[i];
-      playerName.classList.add('players_left');
       playerName.classList.add(`margin_top${i}`);
       setTimeout(() => {
         playerName.classList.add('opacity');
       }, 200);
     }
-    for (let i = 0; i < player.length; i += 2) {
+  }
+
+  setLeftPlayers(player: any) {
+    for (let i = 1; i < player.length; i += 2) {
       let playerName = player[i];
+      playerName.classList.add('players_left');
       playerName.classList.add(`margin_top${i}`);
       setTimeout(() => {
         playerName.classList.add('opacity');
@@ -136,6 +145,7 @@ export class GameComponent implements OnInit {
 
   playGame() {
     this.gameStart = true;
+     this.checkGameIsStarted();
   }
 
 }
