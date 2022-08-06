@@ -10,14 +10,12 @@ import { Game } from 'src/models/game';
   styleUrls: ['./start-screen.component.scss']
 })
 export class StartScreenComponent implements OnInit {
-
+  gameId: string;
   constructor(private firestore: AngularFirestore, private router: Router) { }
 
   buttonAnimation = false;
   ngOnInit(): void {
     this.animateButton();
-    console.log('der geht');
-    
   }
 
 
@@ -27,16 +25,13 @@ export class StartScreenComponent implements OnInit {
       .collection('games')
       .add(game.toJson())
       .then((gameInfo: any) => {
-        console.log(gameInfo);
-
         this.router.navigateByUrl('/game/' + gameInfo.id);
+        this.gameId = gameInfo.id; 
       });
 
   }
 
   animateButton() {
-    console.log('der gehht');
-    
     this.buttonAnimation = true;
     setTimeout(() => {
       this.buttonAnimation = false;
@@ -45,6 +40,5 @@ export class StartScreenComponent implements OnInit {
       this.animateButton();
     }, 2000);
   }
- 
 }
 

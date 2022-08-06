@@ -2,7 +2,7 @@
     width: 100vw;
     height: 100vh;
     max-width: 100%;
-    background: green;
+    background: #104110;
 }
 
 .startscreen_container {
@@ -156,6 +156,7 @@ screen and (max-height: 600px) {
     .start_logo {
         width: 200px;
         height: 200px;
+        border: 5px solid rgb(221, 186, 30);
     }
 
     .game_name {
@@ -171,6 +172,6 @@ screen and (max-height: 600px) {
     }
 
     .start_cards {
-        width: 75px;
+        width: 50px;
     }
 }

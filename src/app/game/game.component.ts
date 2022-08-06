@@ -7,6 +7,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { PlayerComponent } from '../player/player.component';
 import { EditPlayerComponent } from '../edit-player/edit-player.component';
+import { StartScreenComponent } from '../start-screen/start-screen.component';
 
 
 @Component({
@@ -18,6 +19,8 @@ export class GameComponent implements OnInit {
   game: Game;
   gameId: string;
   gameOver = false;
+  gameStart = false;
+  addedPlayer = false;
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public dialog: MatDialog) {
 
   }
@@ -47,7 +50,14 @@ export class GameComponent implements OnInit {
     this.game = new Game();
     setInterval(() => {
       this.setnewStyle();
+      this.checkGameStart();
     }, 5);
+  }
+
+  checkGameStart() {
+    if (this.game.players.length > 0) {
+      this.gameStart = true;
+    }
   }
 
 
@@ -76,6 +86,7 @@ export class GameComponent implements OnInit {
         this.game.players.push(name);
         this.game.player_images.push('male.png');
         this.saveGame();
+        this.addedPlayer = true;
       }
     });
   }
@@ -121,6 +132,10 @@ export class GameComponent implements OnInit {
       .collection('games')
       .doc(this.gameId)
       .update(this.game.toJson())
+  }
+
+  playGame() {
+    this.gameStart = true;
   }
 
 }

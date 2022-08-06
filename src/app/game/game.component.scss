@@ -1,8 +1,45 @@
+.gameInfo_wrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    top: 0;
+    background: rgba(0, 0, 0, 0.719);
+    z-index: 99;
+}
+
+.gameInfo_container {
+    height: 50%;
+    background: white;
+    border: 5px solid rgb(221, 186, 30);
+    padding: 16px;
+    width: 80%;
+}
+
+.info_text {
+    font-size: 25px;
+}
+
+.gameLink {
+    font-size: 30px;
+    color: rgb(221, 186, 30);
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.game_info_addplayers_container {
+    margin-bottom: 50px;
+}
+
+.lets_start_btn {
+    background-color: rgb(221, 186, 30) !important;
+}
+
 .field {
     height: 100vh;
     width: 100vw;
     max-width: 100%;
-    background: green;
+    background: #104110;
 }
 
 .cardstack {
@@ -77,7 +114,7 @@
 }
 
 .margin_top4 {
-    top:140px;
+    top: 140px;
 }
 
 .margin_top5 {
@@ -93,22 +130,38 @@
 }
 
 .margin_top8 {
-    top: 260px
+    top: 260px;
 }
 
 .margin_top9 {
-    top: 260px
+    top: 260px;
+}
+
+.add_btn_start {
+    &:hover {
+        .add_icon {
+            color: rgb(221, 186, 30);
+        }
+    }
+
+    .add_icon {
+        color: black;
+    }
+}
+
+.d_none {
+    display: none;
 }
 
 .add_btn {
     position: absolute;
-    right: 50px;
+    right: calc(50% - 28px);
     bottom: 50px;
     background: white;
 
     &:hover {
         .add_icon {
-            color: green;
+            color: rgb(221, 186, 30);
         }
     }
 
@@ -123,18 +176,18 @@
 }
 
 .gameOver_container {
-   width: 500px;
-   height: 500px;
-   border-radius: 100%;
-   background: white;
-   border: 10px solid rgb(221, 186, 30);
+    width: 500px;
+    height: 500px;
+    border-radius: 100%;
+    background: white;
+    border: 10px solid rgb(221, 186, 30);
 
-   p {
-    font-size: 70px;
-    color: black;
-    margin-top: 33px;
-    margin-bottom: 33px;
-   }
+    p {
+        font-size: 70px;
+        color: black;
+        margin-top: 33px;
+        margin-bottom: 33px;
+    }
 }
 
 .gameOver_wrapper {
@@ -148,7 +201,6 @@
 }
 
 @media (max-width: 900px) {
-
     .cardstack {
         left: -25%;
         height: 100px;
@@ -164,7 +216,6 @@
 }
 
 @media (max-width: 600px) {
-
     .cardstack {
         left: -36%;
         height: 100px;
@@ -182,10 +233,10 @@
         animation: pick_card_animation 1.5s ease-in-out;
         transform: translate(140px) translateY(0px);
     }
-    
+
     @keyframes pick_card_animation {
         0% {
-            transform: scale(1)  translateY(-20px);
+            transform: scale(1) translateY(-20px);
         }
         30% {
             transform: scale(1.5);
@@ -201,54 +252,50 @@
     .margin_top0 {
         top: 10px;
     }
-    
+
     .margin_top1 {
         top: 10px;
     }
     .margin_top2 {
         top: 40px;
     }
-    
+
     .margin_top3 {
         top: 40px;
     }
-    
+
     .margin_top4 {
         top: 70px;
     }
-    
+
     .margin_top5 {
         top: 70px;
     }
-    
+
     .margin_top6 {
         top: 100px;
     }
-    
+
     .margin_top7 {
         top: 100px;
     }
 
     .margin_top8 {
-        top: 130px
+        top: 130px;
     }
 
     .margin_top9 {
-        top: 130px
-    }    
-    
+        top: 130px;
+    }
 }
 
-@media screen and (max-width: 800px),
-screen and (max-height: 800px) {
-
+@media screen and (max-width: 800px), screen and (max-height: 800px) {
     .gameOver_container {
         width: 270px;
         height: 270px;
         border: 6px solid rgb(221, 186, 30);
-         p {
+        p {
             font-size: 37px;
-         }
+        }
     }
-    
 }
