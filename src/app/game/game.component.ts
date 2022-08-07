@@ -18,6 +18,7 @@ export class GameComponent implements OnInit {
   gameOver = false;
   gameStart = true;
   addedPlayer = false;
+  nextPlayer = false;
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public dialog: MatDialog) {
 
   }
@@ -55,13 +56,12 @@ export class GameComponent implements OnInit {
 
   checkGameIsStarted() {
     console.log(this.game.players.length)
-      if (this.game.players.length > 0) {
-        this.gameStart = true;
-      } else {
-        this.gameStart = false;
-      }
+    if (this.game.players.length > 0) {
+      this.gameStart = true;
+    } else {
+      this.gameStart = false;
+    }
   }
-
 
   takeCard() {
     if (this.game.stack.length == 0) {
@@ -78,6 +78,18 @@ export class GameComponent implements OnInit {
         this.saveGame();
       }, 20);
     }
+
+    setTimeout(() => {
+      this.nextPlayer = false;
+    }, 2000);
+  }
+
+  closeInfo() {
+    this.nextPlayer = true;
+  }
+
+  openInfo() {
+    this.nextPlayer = false;
   }
 
   openDialog(): void {
@@ -99,7 +111,9 @@ export class GameComponent implements OnInit {
         if (image == 'Delete') {
           this.game.player_images.splice(playerId, 1);
           this.game.players.splice(playerId, 1);
-          window.location.reload();
+          setTimeout(() => {
+            window.location.reload();
+          }, 500)
         } else {
           this.game.player_images[playerId] = image;
         }
@@ -145,7 +159,7 @@ export class GameComponent implements OnInit {
 
   playGame() {
     this.gameStart = true;
-     this.checkGameIsStarted();
+    this.checkGameIsStarted();
   }
 
 }
