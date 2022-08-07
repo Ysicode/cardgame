@@ -11,9 +11,17 @@ mat-card {
     color: #fafafa;
 }
 
+mat-card-title {
+    font-size: 30px;
+}
+
+mat-card-content {
+    font-size: 20px;
+}
+
 @media screen and (max-width: 500px), screen and (max-height: 500px) {
     mat-card-title {
-        font-size: 17px;
+        font-size: 20px;
     }
 
     mat-card {
@@ -22,6 +30,6 @@ mat-card {
     }
 
     mat-card-content {
-        font-size: 13px;
+        font-size: 15px;
     }
 }

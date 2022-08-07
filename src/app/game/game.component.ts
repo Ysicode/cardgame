@@ -27,6 +27,7 @@ export class GameComponent implements OnInit {
     this.newGame();
     this.route.params.subscribe((params) => {
       this.gameId = params['identifier'];
+    
       this
         .firestore
         .collection('games')
@@ -55,7 +56,6 @@ export class GameComponent implements OnInit {
   }
 
   checkGameIsStarted() {
-    console.log(this.game.players.length)
     if (this.game.players.length > 0) {
       this.gameStart = true;
     } else {
